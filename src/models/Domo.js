@@ -21,6 +21,12 @@ var DomoSchema = new mongoose.Schema({
 		required: true
 	},
 	
+	rating: {
+		type: Number,
+		min: 0,
+		required: true
+	},
+	
 	owner: {
 		type: mongoose.Schema.ObjectId,
 		required: true,
@@ -36,7 +42,8 @@ var DomoSchema = new mongoose.Schema({
 DomoSchema.methods.toAPI = function() {
 	return {
 		name: this.name,
-		age: this.age
+		age: this.age,
+		rating: this.rating
 	};
 };
 
