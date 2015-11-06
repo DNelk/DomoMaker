@@ -52,9 +52,12 @@ DomoSchema.statics.findByOwner = function(ownerId, callback) {
 		owner: mongoose.Types.ObjectId(ownerId)
 	};
 	
-	return DomoModel.find(search).select("name age").exec(callback);
+	return DomoModel.find(search).select("name age rating").exec(callback);
 };
 
+DomoSchema.statics.listByRating = function(callback){
+	return DomoModel.find().sort( {rating: -1}).select("name age rating").exec(callback);
+};
 DomoModel = mongoose.model('Domo', DomoSchema);
 
 module.exports.DomoModel = DomoModel;

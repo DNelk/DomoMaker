@@ -13,6 +13,15 @@ var makerPage = function(req, res){
 	});
 };
 
+var rankings = function(req, res){
+	Domo.DomoModel.listByRating(function(err,docs){
+		if(err){console.log(err);
+			return res.status(400).json({error: "An error occurred"});
+		}
+		res.render('rankings', {csrfToken: req.csrfToken(), domos:docs});
+	});
+}
+
 var makeDomo = function(req, res){
 	if(!req.body.name || !req.body.age || !req.body.rating){
 		return res.status(400).json({error: "RAWR! All fields are required!"});
@@ -39,3 +48,4 @@ var makeDomo = function(req, res){
 
 module.exports.makerPage = makerPage;
 module.exports.make = makeDomo;
+module.exports.rankings = rankings;

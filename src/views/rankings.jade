@@ -7,22 +7,13 @@ block body
       img#logo(src="/assets/img/face.png", alt="face logo")
     .navlink
       a(href="/logout") Log out
-      a(href="/rankings") Rankings
-  section#makeDomo
-    form#domoForm(class="domoForm", name="domoForm", action="/maker", method="POST")
-      label(for="name") Name: 
-      input#domoName(type="text", name="name", placeholder="Domo Name")
-      label(for="age") Age: 
-      input#domoAge(type="text", name="age", placeholder="Domo Age")
-      label(for="rating") Rating:
-      input#domoRating(type="text", name="rating", placeHolder="Domo Rating")
-      input(type="hidden", name="_csrf", value="#{csrfToken}")
-      a#makeDomoSubmit(class="makeDomoSubmit", href="#") Make Domo
+      a(href="/maker") Maker
   section#domos
     if !domos || domos.length == 0
       div.domo
         h3.emptyDomo No Domos Yet
     else
+      h3.emptyDomo Top Ranking Domos
       each val in domos
         div.domo
           img(class="domoFace", src="/assets/img/domoface.jpeg", alt="domo face")
